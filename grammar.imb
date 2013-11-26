@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A simple English language grammar
+% Background knowledge
+% Comment out part of the program before running Imparo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+s(S1,S2) :- np(S1,S3), vp(S3,S4), np(S4,S2).
+s(S1,S2) :- np(S1,S3), vp(S3,S4), np(S4,S5), prep(S5,S6), np(S6,S2).
+
+np(S1,S2) :- det(S1,S3), noun(S3,S2).
+np(S1,S2) :- det(S1,S3), adj(S3,S4), noun(S4,S2).
+
+det([a|S],S).
+det([the|S],S).
+
+adj([big|S],S).
+adj([small|S],S).
+adj([nasty|S],S).
+
+vp(S1,S2) :- verb(S1,S2).
+vp(S1,S2) :- verb(S1,S3), prep(S3,S2).
+
+noun([man|S],S).
+noun([dog|S],S).
+noun([house|S],S).
+noun([ball|S],S).
+
+verb([takes|S],S).
+verb([walks|S],S).
+verb([hits|S],S).
+verb([likes|S],S).
+
+prep([at|S],S).
+prep([to|S],S).
+prep([on|S],S).
+prep([in|S],S).
+prep([into|S],S).
+
+

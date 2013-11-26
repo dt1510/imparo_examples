@@ -1,0 +1,130 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Grammar learning problem. 
+% Learns s/2, a simple English language phrase grammar.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(6).
+:-set_max_clauses(1).
+:-set_connected(0).
+:-set_max_var_depth(4).
+
+head_modes([
+    s(+wlist,-wlist),
+    np(+wlist,-wlist),
+    vp(+wlist,-wlist),
+    det([#word|+wlist],-wlist),
+    adj([#word|+wlist],-wlist),
+    noun([#word|+wlist],-wlist),
+    verb([#word|+wlist],-wlist),
+    prep([#word|+wlist],-wlist)
+]).
+
+body_modes([
+    det(+wlist,-wlist),
+    adj(+wlist,-wlist),
+    np(+wlist,-wlist),
+    vp(+wlist,-wlist),
+    prep(+wlist,-wlist),
+    noun(+wlist,-wlist),
+    verb(+wlist,-wlist)
+]).
+
+%%%%%%%%%%%%%%%%%%%%
+% Types
+
+word(W) :- atom(W).
+
+wlist([]).
+wlist([W|Rest]) :- word(W), wlist(Rest).
+
+
+% Syntactic constraints on clause form
+
+skip_solution(S):-          % All head variables must appear in body.
+        \+ generative(S).
+
+generative([Head]):- 
+        !,
+        term_variables(Head,Vars),
+        \+ (member(V,Vars),
+            occurrences_of_var(V,Head,1)).
+            
+generative([Head|Body]):-
+        Body \== [],
+        \+ (member(A1,[Head|Body]),
+            term_variables(A1,A1Vars),
+            member(X,A1Vars),
+            \+ (member(A2,[Head|Body]),
+                A1 \== A2,
+                term_variables(A2,A2Vars),
+                member(Y,A2Vars),
+                X==Y)
+            ).
+
+prune(Hypothesis) :-                 % Terminals must be unit clauses and generative
+        member([det(A,B)|Body],Hypothesis),
+        (Body \== [] ; \+ generative([det(A,B)])).
+prune(Hypothesis) :- 
+        member([adj(A,B)|Body],Hypothesis),
+        (Body \== [] ; \+ generative([adj(A,B)])).
+prune(Hypothesis) :- 
+        member([noun(A,B)|Body],Hypothesis),
+        (Body \== [] ; \+ generative([noun(A,B)])).
+prune(Hypothesis) :- 
+        member([verb(A,B)|Body],Hypothesis),
+        (Body \== [] ; \+ generative([verb(A,B)])).
+prune(Hypothesis) :- 
+        member([prep(A,B)|Body],Hypothesis),
+        (Body \== [] ; \+ generative([prep(A,B)])).
+prune(Hypothesis) :- 
+        member([Head|Body],Hypothesis),
+        Body \== [], 
+        last([Head|Body1],Last,[Head|Body]),
+        term_variables_bag(Last,[In,_]),
+        \+ (
+            (
+                term_variables_bag(Head,[HIn,_]),
+                HIn == In
+            )
+            ;
+            (
+                member(Atom,Body1),
+                term_variables_bag(Atom,[_,AtOut]),
+                In == AtOut
+            )
+        ).
+        
+prune(Hypothesis) :- 
+    member([Head|Body],Hypothesis),
+    member(Head,Body).	                    % Self-recursion banned
+prune(Hypothesis) :- 
+    member([Head|Body],Hypothesis),         % Mutual recursion depth 1
+	member(Atom,Body), 
+	((rule((Atom:-Body1)),
+	 convert_to_list(Body1,B1List),
+	 member(Head,B1List)
+	 )
+	;
+	 (member([Atom|Body2],Hypothesis),
+	  member(Head,Body2)
+	 )
+	).
+
+%prune(Head,Body) :-			% Mutual recursion depth 2
+%	in(Atom1,Body), clause(Atom1,Body1),
+%	in(Atom2,Body1), clause(Atom2,Body2),
+%	in(Head,Body2).
+
+
+%% Domain predicates for abducibles
+
+domain(s(A,B)) :- ground(A),proper_suffix(A,B).	% All are suffix of ground input word-list
+domain(np(A,B)) :- ground(A),proper_suffix(A,B).
+domain(vp(A,B)) :- ground(A),proper_suffix(A,B).
+domain(det(A,B)) :- ground(A),tail(A,B).
+domain(adj(A,B)) :- ground(A),tail(A,B).
+domain(prep(A,B)) :- ground(A),tail(A,B).
+domain(noun(A,B)) :- ground(A),tail(A,B).
+domain(verb(A,B)) :- ground(A),tail(A,B).
+
