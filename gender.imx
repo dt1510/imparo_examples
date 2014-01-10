@@ -1,0 +1,12 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gender
+% Examples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+woman(ann).
+woman(mary).
+woman(susan).
+woman(jane).
+:- woman(bob).
+:- woman(tom).
+:- woman(john).

@@ -35,5 +35,3 @@ prep([to|S],S).
 prep([on|S],S).
 prep([in|S],S).
 prep([into|S],S).
-
-
