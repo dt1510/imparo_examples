@@ -3,10 +3,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % These parameters can be varied to control the form of the hypotheses learned.
-:-set_max_clause_length(60).
-:-set_max_clauses(10).
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
 :-set_connected(1).
-:-set_max_var_depth(40).
+:-set_max_var_depth(3).
 
 head_modes([
     woman(+person)
@@ -22,7 +22,7 @@ person(tom).
 person(john).
 person(david).
 person(terry).
-
+ 
 person(ann).
 person(mary).
 person(susan).
