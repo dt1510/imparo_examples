@@ -19,3 +19,8 @@ body_modes([
 word(e).
 word(a(b(e))).
 word(a(b(a(b(e))))).
+word(p(a(b(a(b(a(b(e)))))))).
+word(p(b(e))).
+word(p(a(e))).
+word(p(a(a(b(e))))).
+
