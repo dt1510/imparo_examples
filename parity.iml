@@ -1,0 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parity learning problem. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+    even(+number)
+]).
+
+body_modes([
+    even(+number)
+]).
+
+number(0).
+number(s(0)).
+number(s(s(0))).
+number(s(s(s(0)))).
+number(s(s(s(s(0))))).
+
