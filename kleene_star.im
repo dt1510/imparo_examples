@@ -21,3 +21,20 @@ word(a(e)).
 word(a(a(e))).
 word(a(a(a(e)))).
 word(a(a(a(a(e))))).
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kleene star
+% Background knowledge
+% Comment out part of the program before running Imparo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Kleene star
+% Examples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+p(e).
+p(a(e)).
+p(a(a(e))).
+p(a(a(a(e)))).
+p(a(a(a(a(e))))).

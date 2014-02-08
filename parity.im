@@ -22,3 +22,21 @@ number(s(s(0))).
 number(s(s(s(0)))).
 number(s(s(s(s(0))))).
 
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parity
+% Background knowledge
+% Comment out part of the program before running Imparo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Parity
+% Examples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+even(0).
+even(s(s(0))).
+even(s(s(s(s(0)))).
+
+:- even(s(0)).
+:- even(s(s(s(0)))).

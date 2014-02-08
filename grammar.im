@@ -128,3 +128,97 @@ domain(prep(A,B)) :- ground(A),tail(A,B).
 domain(noun(A,B)) :- ground(A),tail(A,B).
 domain(verb(A,B)) :- ground(A),tail(A,B).
 
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A simple English language grammar
+% Background knowledge
+% Comment out part of the program before running Imparo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+s(S1,S2) :- np(S1,S3), vp(S3,S4), np(S4,S2).
+s(S1,S2) :- np(S1,S3), vp(S3,S4), np(S4,S5), prep(S5,S6), np(S6,S2).
+
+np(S1,S2) :- det(S1,S3), noun(S3,S2).
+np(S1,S2) :- det(S1,S3), adj(S3,S4), noun(S4,S2).
+
+det([a|S],S).
+det([the|S],S).
+
+adj([big|S],S).
+adj([small|S],S).
+adj([nasty|S],S).
+
+vp(S1,S2) :- verb(S1,S2).
+vp(S1,S2) :- verb(S1,S3), prep(S3,S2).
+
+noun([man|S],S).
+noun([dog|S],S).
+noun([house|S],S).
+noun([ball|S],S).
+
+verb([takes|S],S).
+verb([walks|S],S).
+verb([hits|S],S).
+verb([likes|S],S).
+
+prep([at|S],S).
+prep([to|S],S).
+prep([on|S],S).
+prep([in|S],S).
+prep([into|S],S).
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% A simple English language grammar
+% Examples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+s([the,dog,takes,the,ball,to,the,man],[]).
+s([the,small,dog,walks,on,the,house],[]).
+s([the,dog,takes,the,ball,to,the,house],[]).
+:- s([the,dog],[]).
+:- s([the,the,house,dog,on,walks],[]).
+s([the,small,dog,walks,into,the,house],[]).
+s([a,dog,hits,a,ball],[]).
+:- s([ball,dog,the,the,takes,man,the,to],[]).
+:- s([the,hits,at,man,the,ball],[]).
+s([the,big,man,hits,at,the,ball],[]).
+s([the,man,hits,the,ball,to,the,dog],[]).
+s([the,man,walks,into,the,house],[]).
+s([the,man,hits,the,ball,at,the,house],[]).
+s([a,man,hits,the,ball,at,the,dog],[]).
+s([a,ball,hits,the,small,dog],[]).
+:- s([dog,the,man,the,walks],[]).
+:- s([dog,small,hits,a,ball,the],[]).
+:- s([the,the,big,hits,dog,man],[]).
+s([a,ball,hits,the,dog],[]).
+:- s([the,man,dog,hits,nasty,the],[]).
+s([a,man,takes,the,ball,to,the,house],[]).
+:- s([the,hits,small,the,dog,man],[]).
+:- s([at,hits,the,the,man,big,ball],[]).
+s([the,nasty,man,hits,the,dog],[]).
+:- s([dog,the,the,walks,to,man],[]).
+:- s([the,house,the,dog,walks,into,small],[]).
+s([the,man,hits,at,the,ball],[]).
+s([the,small,man,hits,the,dog],[]).
+:- s([in,the,house,the,walks,man],[]).
+:- s([the,man,the,hits,house,ball,at,the],[]).
+s([the,man,takes,the,dog,to,the,ball],[]).
+s([the,dog,walks,on,the,house],[]).
+:- s([man,the,hits,the,dog],[]).
+s([the,big,man,hits,the,dog],[]).
+s([the,dog,walks,to,the,man],[]).
+:- s([to,takes,the,man,a,ball,the,house],[]).
+:- s([to,the,house,walks,the,dog],[]).
+:- s([a,man,walks,the,walks],[]).
+:- s([the,dog,takes,the,the,man,to,ball],[]).
+s([the,small,dog,walks,in,the,house],[]).
+:- s([the,man,the,house,into,walks],[]).
+:- s([hits,the,at,ball,dog,man,a,the],[]).
+:- s([a,dog,walks,the],[]).
+:- s([ball,a,dog,a,hits],[]).
+s([the,man,walks,in,the,house],[]).
+s([the,man,walks,the,dog],[]).
+s([the,man,hits,the,nasty,dog],[]).
+:- s([dog,the,the,to,takes,ball,house,the],[]).
+:- s([the,the,walks,on,dog,house,small],[]).
+s([the,man,hits,the,dog],[]).
