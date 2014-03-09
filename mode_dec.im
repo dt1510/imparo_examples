@@ -1,0 +1,62 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gender learning problem. 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+    woman(+person)
+]).
+
+body_modes([
+    female(+person),
+    male(+person)
+]).
+
+person(bob).
+person(tom).
+person(john).
+person(david).
+person(terry).
+ 
+person(ann).
+person(mary).
+person(susan).
+person(jane).
+
+person(sister(X)).
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gender
+% Background knowledge
+% Comment out part of the program before running Imparo.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+male(bob).
+male(tom).
+male(john).
+male(david).
+male(terry).
+:- female(bob).
+
+female(ann).
+female(sister(ann)).
+female(sister(bob)).
+female(mary).
+female(susan).
+female(jane).
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Gender
+% Examples
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+woman(sister(ann)).
+woman(sister(bob)).
+:- woman(bob).
+:- woman(tom).
+:- woman(john).

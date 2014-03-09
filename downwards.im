@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+%:-set_verbose(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+   even(+number)
+]).
+
+body_modes([
+    even(+number),
+    even(s(+number)),
+    even(s(s(+number)))
+]).
+
+
+number(0).
+number(s(X)).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%even(s(s(s(s(s(s(s(s(0))))))))).
+even(s(s(0)).
+even(s(s(s(s(s(s(0))))))).
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+even(0).
+
+%even(s(s(s(s(s(s(0))))))).
+even(s(s(s(s(0))))).
+%even(s(s(0))).
+:-even(s(0)).
+:-even(s(s(s(0)))).

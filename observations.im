@@ -1,0 +1,48 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+([
+   man(+person),
+   woman(+person)
+]).
+
+body_modes([
+    female(+person),
+    male(+person)
+]).
+
+person(jane).
+person(susan).
+person(eugenia).
+person(jack).
+person(sam).
+person(martin).
+
+% Gender, Background knowledge
+female(jane).
+female(susan).
+female(eugenia).
+
+couple(jack, jane).
+couple(sam, susan).
+couple(martin, eugenia).
+
+male(X) :- couple(X,Y), woman(Y).
+
+% Gender, Examples
+man(jack).
+man(sam).
+man(martin).
+
+woman(jane).
+woman(susan).
+woman(eugenia).
+
+:-man(jane).
+:-woman(sam).
+

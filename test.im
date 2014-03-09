@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+   man(+person)
+]).
+
+body_modes([ 
+   male(+person)
+]).
+
+person(jack).
+person(sam).
+person(john).
+person(jane).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+sheriff(jack).
+sheriff(sam).
+sheriff(john).
+
+male(X) :- policeman(X).
+local_policeman(X) :- sheriff(X).
+policeman(X) :- local_policeman(X).
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+man(jack).
+man(sam).
+man(john).
+
+:- man(jane).
+
+

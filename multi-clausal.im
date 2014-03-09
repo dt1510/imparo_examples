@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+   woman(+person),
+   cook(+person)
+]).
+
+body_modes([ 
+   female(+person)
+]).
+
+person(bob).
+person(tom).
+person(ann).
+person(mary).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+male(bob).
+male(tom).
+female(ann).
+female(mary).
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+woman(ann).
+woman(mary).
+cook(ann).
+cook(mary).
+
+:-woman(bob).
+:-woman(tom).
+:-cook(bob).
+:-cook(tom).
+

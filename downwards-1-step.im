@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%target hypothesis numeral(A) :- numeral(s(A)).
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+%:-set_verbose(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+   numeral(+number)
+]).
+
+body_modes([
+    numeral(+number),
+    numberal(s(+number)),
+    numeral(s(s(+number)))
+]).
+
+
+number(0).
+number(s(X)).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+numeral(s(s(s(s(0))))).
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+numeral(0).
+numeral(s(0)).
+numeral(s(s(0))).
+numeral(s(s(s(0)))).
+
+:-numeral(s(not_number)).
+:-numeral(s(s(s(not_number)))).
