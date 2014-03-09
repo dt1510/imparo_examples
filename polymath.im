@@ -1,0 +1,31 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(5).
+:-set_max_clauses(1).
+:-set_connected(1).
+:-set_max_var_depth(3).
+
+head_modes([
+   modeh(learns(+person, +subject)).
+]).
+
+body_modes([ 
+]).
+
+person(X).
+subject(X).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+learns(polymath, mathematics).
+learns(polymath, physics).
+learns(polymath, chemistry).
+
+learns(jack, mathematics).
+learns(susan, physics).
+:- learns(jack, physics).
+:- learns(susan, chemistry).
