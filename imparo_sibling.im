@@ -1,4 +1,8 @@
 %imparo, sibling
+:-set_max_clause_length(5).
+:-set_max_clauses(5).
+:-set_connected(5).
+:-set_max_var_depth(5).
 head_modes([brother(+person,+person),parent(+person,+person)]).
 body_modes([sibling(+person),male(+person),father(+person)]).
 %type information

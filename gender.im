@@ -4,9 +4,9 @@
 
 % These parameters can be varied to control the form of the hypotheses learned.
 :-set_max_clause_length(5).
-:-set_max_clauses(1).
-:-set_connected(1).
-:-set_max_var_depth(3).
+:-set_max_clauses(5).
+:-set_connected(5).
+:-set_max_var_depth(5).
 
 head_modes([
     woman(+person)
