@@ -50,5 +50,6 @@ brother(rod3,todd3).
 %negative examples
 :-brother(lisa,bart).
 :-brother(rod,bart).
+:-brother(lisa,lisa).
 :-parent(lisa,bart).
 
