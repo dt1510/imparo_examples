@@ -1,0 +1,24 @@
+%imparo, clausal_examples
+:-set_max_clause_length(15).
+:-set_max_clauses(5).
+:-set_connected(1).
+:-set_max_var_depth(5).
+head_modes([woman(+person)]).
+body_modes([female(+person)]).
+%type information
+person(jane).
+person(susan).
+person(mary).
+
+%file%imb
+%background knowledge
+
+%file%imx
+%positive examples
+woman(jane) :- female(jane).
+woman(susan) :- female(susan).
+woman(mary) :- female(mary).
+
+%negative examples
+
+
