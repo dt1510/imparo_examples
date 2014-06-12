@@ -22,13 +22,9 @@ person(jane).
 %file%imb
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-sheriff(jack).
-sheriff(sam).
-sheriff(john).
-
-male(X) :- policeman(X).
-local_policeman(X) :- sheriff(X).
-policeman(X) :- local_policeman(X).
+male(jack).
+male(sam).
+male(john).
 
 %file%imx
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

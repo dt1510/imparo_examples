@@ -1,0 +1,33 @@
+%imparo, test
+:-set_max_clause_length(15).
+:-set_max_clauses(5).
+:-set_connected(1).
+:-set_max_var_depth(5).
+head_modes([w(+p)]).
+body_modes([g(+p),f(+p),h(+p)]).
+%type information
+p(p1).
+p(p2).
+%p(p3).
+p(p4).
+
+%file%imb
+%background knowledge
+f(p1).
+f(p2).
+%f(p3).
+g(p1).
+g(p2).
+%g(p3).
+g(X):-f(X).
+
+%file%imx
+%positive examples
+w(p1).
+w(p2).
+%w(p3).
+
+%negative examples
+:-w(p4).
+
+
