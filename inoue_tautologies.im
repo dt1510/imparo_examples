@@ -1,0 +1,53 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% These parameters can be varied to control the form of the hypotheses learned.
+:-set_max_clause_length(3).
+:-set_max_clauses(3).
+:-set_connected(1).
+:-set_max_var_depth(1).
+
+head_modes([
+   path(+node,+node)
+]).
+
+body_modes([ 
+   arc(+node, -node),
+   path(+node, +node)
+]).
+
+node(X).
+
+domain(path(X,Y)) :- member(X,[a,b,c,d,f,h]).
+
+%file%imb
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+arc(a,b).
+%arc(d,e).
+arc(b,c).
+arc(c,d).
+arc(f,h).
+%path(A,B):-arc(A,B).
+%path(b,d).
+%arc(h,g).
+%arc(g,i).
+%path(X,Z):-path(Y,Z), arc(X,Y).
+
+%file%imx
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+path(a,d).
+path(b,d).
+%path(a2,c2).
+path(f,h).
+%:-path(a,f).
+:-path(a,a).
+:-path(b,b).
+:-path(c,c).
+:-path(d,d).
+:-path(f,f).
+:-path(h,h).
+:-path(a,h).
+:-path(b,a).
+:-path(d,b).
+%:-path(X,X).
