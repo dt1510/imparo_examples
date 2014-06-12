@@ -1,9 +1,9 @@
-%imparo, non-observatonal
+%imparo, non_observational
 :-set_max_clause_length(15).
 :-set_max_clauses(5).
 :-set_connected(1).
 :-set_max_var_depth(5).
-head_modes([couple(+person, +person),man(+person),woman(+person)]).
+head_modes([man(+person),woman(+person)]).
 body_modes([male(+person),female(+person)]).
 %type information
 person(bob).
@@ -21,7 +21,10 @@ female(susan).
 %file%imx
 %positive examples
 couple(bob, mary).
+couple(bob, susan).
 couple(rob, susan).
+couple(rob, mary).
+
 %negative examples
 :-couple(bob, rob).
 :-couple(mary, susan).
